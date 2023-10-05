@@ -16,6 +16,10 @@ npm install --save-exact react-router-dom@5.3.0 --force
 
 npm install --save-exact axios@0.21.4 --force
 
+npm install --save-exact axios@0.23.0 --force
+
+npm install --save-exact moment@2.29.1 --force
+
 <!-- npm redux -->
 npm install --save-exact redux@4.1.1 react-redux@7.2.5 --force
 

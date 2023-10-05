@@ -3,6 +3,7 @@ import './App.css';
 import Nav from './views/Nav';
 import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
+import Covid from './views/Covid';
 
 // template + logic
 //  JSX
@@ -101,6 +102,8 @@ const App = () => {
         <a href={link} >Visit my channel</a> */}
 
         <h1>Hello ReactJs and {name} </h1>
+        <Covid />
+
 
         <Todo
           todos={todos}
