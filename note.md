@@ -23,6 +23,9 @@ npm install --save-exact moment@2.29.1 --force
 <!-- npm redux -->
 npm install --save-exact redux@4.1.1 react-redux@7.2.5 --force
 
+<!--  react bootstrap -->
+npm install --save-exact redux@4.1.1 react-bootstrap@7.2.5 --force
+
 
 /**
  * Sự khác biệt giữa vòng lặp for & foreach (2 vòng lặp này làm ảnh hưởng tới dữ liệu)

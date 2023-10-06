@@ -4,6 +4,17 @@ import Nav from './views/Nav';
 import { useState, useEffect } from 'react';
 import Todo from './views/Todo';
 import Covid from './views/Covid';
+import { CountDown, NewCountDown } from './views/Countdown';
+import Blog from './views/Blog';
+import DetailBlog from './views/DetailBlog';
+import AddNewBlog from './views/AddNewBlog';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 // template + logic
 //  JSX
@@ -39,21 +50,18 @@ const App = () => {
 
   //didmount
   useEffect(() => {
-    console.log('run use effect')
+    // console.log('run use effect')
   }, [address]);
 
   useEffect(() => {
-    console.log('run use effect todos')
+    // console.log('run use effect todos')
   }, [todos]);
 
   const handleEventClick = (event) => {
 
-    // khi dùng vs hook
-    // setName(address);
+    // setName(address) - khi dùng hook;
 
     // this.setState - khi dùng class
-
-    // console.log('>> Click me', name)
 
     if (!address) {
       alert('empty input')
@@ -86,44 +94,97 @@ const App = () => {
     setTodos(currentTodos)
   }
 
+  //Hiện thông báo hết giờ điền thông tin
+  const onTimesup = () => {
+    alert('times up')
+  }
+
 
   return (
-    <div className="App">
 
-      <header className="App-header">
-        <Nav />
+    <Router>
 
-        <img src={logo} className="App-logo" alt="logo" />
+      <div className="App">
 
-        {/* <h1>Hello ReactJs and {obj.name} in {obj.number}</h1> */}
+        <header className="App-header">
+          <Nav />
 
-        {/* <p style={{ color: 'red', fontSize: 12, }}>{JSON.stringify(obj)}</p>
-
-        <a href={link} >Visit my channel</a> */}
-
-        <h1>Hello ReactJs and {name} </h1>
-        <Covid />
+          <img src={logo} className="App-logo" alt="logo" />
 
 
-        <Todo
-          todos={todos}
-          title={'All todos'}
-          deleteDataTodo={deleteDataTodo}
-        />
 
-        {/* vòng lặp filter: lọc phần tử có type == 'mkey' */}
-        <Todo
-          todos={todos.filter(item => item.type === 'mkey')}
-          title={'Mkey todos'}
-          deleteDataTodo={deleteDataTodo}
-        />
+          {/* <h1>Hello ReactJs and {obj.name} in {obj.number}</h1> */}
+
+          {/* <p style={{ color: 'red', fontSize: 12, }}>{JSON.stringify(obj)}</p>
+
+          <a href={link} >Visit my channel</a> */}
+
+          <h1>Hello ReactJs and {name} </h1>
 
 
-        <input type='text' value={address} onChange={(event) => handleOnchangeInput(event)} />
+        </header>
 
-        <button type='button' onClick={(event) => handleEventClick(event)}>Click me</button>
-      </header>
-    </div>
+        <Switch>
+          <Route path="/" exact>
+
+            <Covid />
+
+          </Route>
+
+          {/* TIMER */}
+          <Route path="/timer">
+
+            <CountDown onTimesup={onTimesup} />
+
+            <span>------------------------------</span>
+
+            <NewCountDown />
+
+          </Route>
+
+          {/* TODO */}
+          <Route path="/todo">
+
+            {/* vòng lặp filter: lọc phần tử có type == 'mkey' */}
+            <Todo
+              todos={todos.filter(item => item.type === 'mkey')}
+              title={'Mkey todos'}
+              deleteDataTodo={deleteDataTodo}
+            />
+
+
+            <input type='text' value={address} onChange={(event) => handleOnchangeInput(event)} />
+
+            <button type='button' onClick={(event) => handleEventClick(event)}>Add</button>
+
+          </Route>
+
+          <Route path="/blog" exact>
+
+            <Blog />
+
+          </Route>
+
+          <Route path="/blog/:id" >
+
+            <DetailBlog />
+
+          </Route>
+
+          <Route path="/add-new-blog" >
+
+            <AddNewBlog />
+
+          </Route>
+
+
+
+        </Switch>
+      </div>
+    </Router>
+
+
+
   );
 }
 
